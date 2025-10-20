@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa de Pergunta</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            /* Apenas para centralizar o botão de abrir na página */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        #abrir-caixa {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            position: fixed;
+            right: 970px;
+            top: 500px;
+    
+        }
+
+        #abrir-caixa2 {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            position: fixed;
+            right: 850px;
+            top: 500px;
+        }
+
+        .pergunta {
+            text-align: center;
+            font-size: 50px;
+            position: relative;
+        }
+
+        /* Estilo da caixa de diálogo (modal) */
+        #caixa-pergunta {
+            width: 400px;
+            padding: 24px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* Estilo do fundo escurecido quando a caixa está aberta */
+        #caixa-pergunta::backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        #caixa-pergunta p {
+            font-size: 18px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        /* Container para alinhar os botões */
+        .botoes-container {
+            display: flex;
+            justify-content: center; /* Centraliza os botões */
+            gap: 15px; /* Espaçamento entre os botões */
+        }
+
+        /* Estilo geral dos botões */
+        .botoes-container button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .botoes-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Estilo específico do botão "Sim" */
+        #btn-sim {
+            background-color: #28a745; /* Verde */
+        }
+
+        /* Estilo específico do botão "Não" */
+        #btn-nao {
+            background-color: #dc3545; /* Vermelho */
+        }
+
+        /* Botão principal da página para abrir a caixa */
+        
+            
+        
+    </style>
+</head>
+<body>
+    
+    <p class="pergunta">Você me ama?</p>
+    <br>
+    <button id="abrir-caixa">SIM</button>
+    <button id="abrir-caixa2">NÃO</button>
+
+    <dialog id="caixa-pergunta">
+        <p>VOCÊ TEM CERTEZA?</p>
+        <div class="botoes-container">
+            <button id="btn-nao">Não</button>
+            <button id="btn-sim">SIM</button>
+        </div>
+    </dialog>
+
+
+    <script>
+        // 3. O JavaScript para controlar a caixa
+        const dialogo = document.getElementById('caixa-pergunta');
+        const botaoAbrir = document.getElementById('abrir-caixa');
+        const botaoAbrir2 = document.getElementById('abrir-caixa2');
+        const btnSim = document.getElementById('btn-sim');
+        const btnNao = document.getElementById('btn-nao');
+
+        const textoOriginalbtnNao = btnNao.textContent;
+
+        // 3. Adiciona um "ouvinte" para o evento 'mouseenter' (quando o mouse entra no botão)
+        btnNao.addEventListener('mouseenter', () => {
+            // Ação a ser executada: transforma o texto de dentro do botão
+            btnNao.textContent = 'SIM';
+        });
+
+        // 4. Adiciona um "ouvinte" para o evento 'mouseleave' (quando o mouse sai do botão)
+        btnNao.addEventListener('mouseleave', () => {
+            // Ação a ser executada: restaura o texto original
+            btnNao.textContent = textoOriginalbtnNao;
+
+        });
+
+        // Abre a caixa quando o botão principal for clicado
+        botaoAbrir.addEventListener('click', () => {
+            dialogo.showModal(); // Exibe a caixa como um modal
+        });
+
+        // O que acontece quando o botão "Sim" é clicado
+        btnSim.addEventListener('click', () => {
+            console.log('O usuário clicou em SIM.');
+            // Coloque aqui a sua lógica para a ação "Sim"
+            alert('EU TAMBÉM TE AMOOO!!!!');
+            
+        });
+
+        // O que acontece quando o botão "Não" é clicado
+        btnNao.addEventListener('click', () => {
+            console.log('O usuário clicou em NÃO.');
+            // Coloque aqui a sua lógica para a ação "Não"
+            alert('EU TE AMO MUITO MAISSS!!!!');
+            dialogo.close(); // Fecha a caixa
+        }); 
+    
+    const botao = document.getElementById('abrir-caixa2');
+    const limite = 150;
+
+            botao.addEventListener('mousemove', (e) => {
+            // Obter a posição do mouse
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Obter a posição do botão e suas dimensões
+            const rect = botao.getBoundingClientRect();
+            const botaoX = rect.left + rect.width / 2;
+            const botaoY = rect.top + rect.height / 2;
+
+            // Calcular a distância entre o mouse e o botão
+            const distancia = Math.sqrt(Math.pow(mouseX - botaoX, 2) + Math.pow(mouseY - botaoY, 2));
+
+            // Definir um limite de distância para o efeito
+            const limite = 50;
+
+            if (distancia < limite) {
+                // Calcular a direção do movimento (para longe do mouse)
+                const angulo = Math.atan2(mouseY - botaoY, mouseX - botaoX);
+                const novoX = botaoX - Math.cos(angulo) * 100; // Mover 50 pixels para longe
+                const novoY = botaoY - Math.sin(angulo) * 100; // Mover 50 pixels para longe
+
+                // Aplicar as novas posições ao botão usando transform
+                botao.style.transform = `translate(${novoX - botaoX}px, ${novoY - botaoY}px)`;
+            } else {
+                // Se o mouse estiver longe, resetar a posição
+                botao.style.transform = 'translate(0, 0)';
+            }
+});
+
+        // A caixa também pode ser fechada pressionando a tecla "Esc" por padrão.
+    </script>
+    </body>
+</html>
