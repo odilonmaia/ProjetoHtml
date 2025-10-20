@@ -1,0 +1,62 @@
+
+        /* Estilo para o fundo escurecido atrás do diálogo */
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Estilo da caixa de diálogo */
+        .caixa-dialogo {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            z-index: 2;
+            font-family: Arial, sans-serif;
+        }
+
+        .caixa-dialogo h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .caixa-dialogo p {
+            margin-bottom: 24px;
+            color: #555;
+        }
+
+        /* Container para os botões */
+        .botoes-dialogo {
+            display: flex;
+            justify-content: flex-end; /* Alinha os botões à direita */
+            gap: 10px; /* Espaço entre os botões */
+        }
+
+        /* Estilo geral dos botões */
+        .botoes-dialogo button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        /* Botão de Cancelar (estilo secundário) */
+        #btn-cancelar {
+            background-color: #eee;
+            color: #333;
+        }
+        #btn-cancelar:hover {
+            background-color: #ddd;
+        }
+
+        /* Botão de Confirmar (estilo primário) */
+        #btn-confirmar {
+            background-color: #dc3545; /* Vermelho, para ação de perigo */
+            color: white;
+        }
+        #btn-confirmar:hover {
+            background-color: #c82333;
+        }
+
+    
